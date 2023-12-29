@@ -1,0 +1,126 @@
+
+
+<div class="overlay"*ngIf="disabled">
+  <div class="center" *ngIf="disabled">
+  <mat-progress-spinner diameter=50 mode="indeterminate" color="primary" *ngIf="disabled">
+  </mat-progress-spinner> 
+</div>
+</div>
+
+<h2 mat-dialog-title>
+
+  <div *ngIf="data.action==='Add'; then thenBlock1 else elseBlock1"></div>
+  <ng-template #thenBlock1>Solicitar transcrição </ng-template>
+  <ng-template #elseBlock1>Detalhes da transcrição <b> {{data.name}} </b> </ng-template>
+  <hr>
+</h2>
+
+
+
+<mat-dialog-content > 
+  
+
+<p *ngIf="show_err" style="color:red">{{err_message}} </p>
+
+
+<div class="divform" mat-dialog-content>
+  
+  <table width="100%" >
+      
+    <tr><td width="100%" colspan="2">
+
+      <mat-form-field class="example-full-width" >
+        <mat-label>Nome da transcrição</mat-label>
+        <input matInput name="trname" [(ngModel)]="data.obj.name" value="{{data.obj.name}}" [readonly]="data.action==='Details'">
+      </mat-form-field>
+    </td></tr>
+
+    <tr><td width="100%" colspan="2">
+
+      <mat-form-field  class="example-full-width">
+        <mat-label>Descrição</mat-label>
+        <textarea matInput name="descrição" [(ngModel)]="data.obj.description" placeholder="Entre uma descrição." [readonly]="data.action==='Details'">{{data.obj.description}}</textarea>
+      </mat-form-field>
+    </td></tr>
+    
+    <div *ngIf="data.action==='Details'; then thenBlock2"></div>
+    <ng-template #thenBlock2>
+
+      <tr><td width="100%" colspan="2">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nome do arquivo</mat-label>
+          <input matInput name="file_name" [(ngModel)]="data.obj.file_name" value="{{data.obj.file_name}}" [readonly]="data.action==='Details'">
+        </mat-form-field>
+      </td></tr>
+      <tr><td width="100%" colspan="2">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Situação</mat-label>
+          <input matInput name="status"  value="{{data.obj.status}}" [readonly]="data.action==='Details'">
+        </mat-form-field>
+      </td></tr>
+
+    </ng-template>
+
+    <tr>
+        <td width="100%">
+          <mat-form-field class="example-full-width">
+            <mat-label>Usuário</mat-label>
+            <input matInput name="username" [(ngModel)]="data.obj.user.name" value="{{data.obj.user.name}}" [readonly]="true">
+          </mat-form-field>
+        </td>
+        <td width="100px">
+          <mat-form-field class="example-full-width">
+            <mat-label>Login</mat-label>
+            <input matInput name="login" [(ngModel)]="data.obj.user.login" value="{{data.obj.user.login}}" [readonly]="true">
+          </mat-form-field>
+        </td>
+    </tr>
+
+    <div *ngIf="data.action==='Add'; then thenBlock3"></div>
+    <ng-template #thenBlock3>
+
+      <tr><td width="100%" colspan="2" class="uploadcell">
+        <table width="100%"><tr>
+          <td width="100%">
+            <mat-form-field class="example-full-width">
+                <mat-label>Arquivo de audio</mat-label>
+
+                <input matInput  
+                      name="file_name" 
+                      [(ngModel)]="data.obj.file_name" 
+                      value="{{data.obj.file_name}}" 
+                      [readonly]="true" >
+
+            </mat-form-field>
+            <input hidden #fileInput type="file" id="file" (change)="SelecionarArquivo(fileInput)" accept="audio/*,video/*">
+          </td >
+          <td > 
+            <button mat-stroked-button color="primary"  (click)="fileInput.click()">Selecionar</button>
+          </td> 
+        </tr></table>
+      </td></tr>
+    </ng-template>  
+
+    <tr><td colspan="2">
+      <div class=divactions mat-dialog-actions align="end">
+    
+        <div *ngIf="data.action==='Details'; then thenBlock4 else elseBlock4"></div>
+      
+        <ng-template #thenBlock4>
+          <button mat-raised-button color="primary" cdkFocusInitial (click)="onFecharClick()">Fechar</button>
+        </ng-template>
+      
+        <ng-template #elseBlock4>
+          <button mat-raised-button color="primary"  (click)="onSubmeterClick(data)" [disabled]="disabled">Submeter</button>
+          <button mat-raised-button color="primary"  (click)="onCancelarClick()" cdkFocusInitial [disabled]="disabled">Cancelar</button>
+        </ng-template>
+      </div>  
+    </td></tr>  
+  
+  </table>
+  
+  
+</div></mat-dialog-content>
+  
+  

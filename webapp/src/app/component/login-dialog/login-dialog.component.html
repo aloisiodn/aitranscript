@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Login<hr></h2>
+    
+    <mat-dialog-content > <!--[formGroup]="form" >  -->
+        <p style="color:red">{{err_message}} </p>
+    
+    <div class="divform" mat-dialog-content>
+      <mat-form-field class="example-full-width" >
+        <mat-icon matPrefix>person</mat-icon>
+        <mat-label>Login</mat-label>
+        <input matInput name="login" [(ngModel)]="data.obj.login" 
+                        value="{{data.obj.login}}" placeholder="Entre seu login">
+      </mat-form-field>
+      
+      <mat-form-field class="example-full-width" >
+        <mat-label>Password</mat-label>
+        <mat-icon matPrefix>lock</mat-icon>
+        <input matInput type="password"  name="password" [(ngModel)]="data.obj.password" 
+                        value="{{data.obj.password}}" placeholder="Entre sua senha">
+      </mat-form-field>
+      
+    
+    <div class=divactions mat-dialog-actions align="end">
+        <button mat-raised-button color="primary"  (click)="onLoginClick(data.obj)">Login</button>
+        <button mat-raised-button color="primary"  (click)="onCancelarClick()" cdkFocusInitial>Cancelar</button>
+    </div>
+    </div>
+    </mat-dialog-content>

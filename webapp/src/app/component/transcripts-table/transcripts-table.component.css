@@ -1,0 +1,58 @@
+.containerdiv {
+    margin:8px;
+
+    position: relative;
+  }
+
+.tablediv {
+    position: relative;
+    min-height: 200px;
+    max-height: 750px;
+    overflow: auto;
+  }
+
+  .paginatordiv {
+    position: relative;
+    min-height: 200px;
+    max-height: 750px;
+    overflow: auto;
+  }
+
+
+    
+.buttondiv{
+     
+    margin:15px;
+    width: 99%;
+
+}
+
+th { background-color:  lightgray !important;
+    color:black;
+    
+
+}
+td{
+    vertical-align: text-center;
+}
+.title{ font-family: Arial;
+        font-size: large;
+        font-weight: bold;
+        text-align: left;
+        width: 100%;
+
+}
+.newbutton{
+    text-align: right;
+    min-width: 230px;
+
+}
+
+.reloadbutton{
+    text-align: right;
+    min-width: 100px;
+
+}
+.status_element{
+text-align: "left"
+}

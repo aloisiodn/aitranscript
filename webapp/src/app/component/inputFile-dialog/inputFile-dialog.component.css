@@ -1,0 +1,48 @@
+.example-form {
+    min-width: 150px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .divform{
+
+    margin: 1px
+
+  }
+  .divactions{
+
+    margin: 0px
+
+  }
+
+  td{ padding:4px}
+
+  .uploadcell{padding: 0}
+
+  table {
+    border-spacing: 0px;
+  }
+
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+.overlay{
+  height:100vh;
+  width:100%;
+  background-color:rgba(0, 0, 0, 0.1);
+  z-index:    10;
+  top:        0; 
+  left:       0; 
+  position:   fixed;
+}
+

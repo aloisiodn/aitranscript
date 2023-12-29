@@ -1,0 +1,68 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+
+    <button mat-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <span>AITranscript</span>
+    <span class="example-spacer"></span>
+
+    <div *ngIf="authService.isAuthenticated(); then thenBlock1 else elseBlock1"></div>
+    <ng-template #thenBlock1>
+        <button mat-button [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon>{{authService.getUser().name}}</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item disabled>
+              <mat-icon>notifications</mat-icon>
+              <span>Ver alertas</span>
+            </button>
+            <button mat-menu-item  disabled>
+              <mat-icon>notifications_off</mat-icon>
+              <span>Marcar alertas como lidos</span>
+            </button>
+            <hr>
+            <button mat-menu-item routerLink="" (click)="authService.logoff()">
+                <mat-icon>exit_to_app</mat-icon>
+                <span>sair</span>
+            </button>
+  
+        </mat-menu>
+    
+    
+    
+    
+    
+    </ng-template>
+ 
+ 
+    <ng-template #elseBlock1>
+        <button mat-button  (click)="openLoginDialog()"><mat-icon>login</mat-icon>Login</button>
+    </ng-template>
+  
+
+    <button routerLink="" mat-button mat-button><mat-icon>help</mat-icon>About</button>
+</mat-toolbar>
+<mat-drawer-container autosize>
+    <mat-drawer #drawer opened="true" mode="side" class="mat-elevation-z8">
+        <mat-nav-list>
+            <mat-list-item>
+                <button mat-button><mat-icon>dashboard</mat-icon>Dashboard</button>
+             </mat-list-item>
+
+            <mat-list-item>
+                <button routerLink="transcripts-table" mat-button><mat-icon>edit</mat-icon>Transcrições</button>
+             </mat-list-item>
+
+             <mat-list-item>
+                <button mat-button><mat-icon>settings</mat-icon>Configurações</button>
+            </mat-list-item>
+
+        </mat-nav-list>
+
+    </mat-drawer>
+    <mat-drawer-content>
+        <div style="text-align: center; min-height: 300px;">
+
+
+            <router-outlet></router-outlet>
+            
+        </div>
+    </mat-drawer-content>
+
+</mat-drawer-container>

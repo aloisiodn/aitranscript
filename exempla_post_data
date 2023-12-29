@@ -1,0 +1,14 @@
+{
+    "name": "n1",
+    "description": "d1",
+    "file_name": "fn1",
+    "user": {
+        "id":1, 
+        "login": "admin",
+        "name": "admin",
+        "is_admin": false
+    },
+    "status": "UP",
+    "transcript": "TR",
+    "summary": "SUP"
+}
