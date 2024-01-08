@@ -48,7 +48,7 @@ class InputFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputFile
         fields = ['id', 'name', 'description', 'file_name', 'user', 'status',  'transcript', 'summary',
-                  'upload_dt', 'transcript_dt', 'summary_dt', 'file_key']
+                  'upload_dt', 'start_processing_dt', 'transcript_dt', 'summary_dt', 'file_key', 'lock_key']
 
     def create(self, validated_data):
         from django.utils.timezone import make_aware
@@ -91,4 +91,4 @@ class TranscriptSerializer(serializers.ModelSerializer):
     class Meta:
         model = InputFile
         fields = ['id', 'name', 'file_name', 'status',  
-                  'transcript', 'upload_dt', 'transcript_dt', 'summary_dt', 'file_key']
+                  'transcript', 'upload_dt', 'transcript_dt', 'summary_dt', 'file_key', 'lock_key']

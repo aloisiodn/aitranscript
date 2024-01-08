@@ -26,9 +26,6 @@ router.register(r'user_prompts', views.UserPromptViewSet)
 router.register(r'system_prompts', views.SystemPromptViewSet)
 router.register(r'user', views.UserViewSet)
 router.register(r'upload', views.UploadViewSet, basename="upload")
-router.register(r'transcript', views.TranscriptViewSet, basename="transcript")
-
-
 
 urlpatterns = [
     path('api/v1/', include(router.urls)),

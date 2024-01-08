@@ -56,8 +56,8 @@ export class InputFileDialogController{
 
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
-    dialogConfig.width = "600px";
-    dialogConfig.height = "800px";
+    dialogConfig.width = "800px";
+    dialogConfig.height = "850px";
 
     dialogConfig.data = {
         action: action,

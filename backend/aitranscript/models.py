@@ -53,10 +53,12 @@ class InputFile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='files')
     status = models.CharField(max_length=2, choices=FILE_STATUS, default='UP')
     upload_dt = models.DateTimeField(null=True, blank=True)
+    start_processing_dt = models.DateTimeField(null=True, blank=True)
     transcript_dt = models.DateTimeField(null=True, blank=True)
     summary_dt = models.DateTimeField(null=True, blank=True)
     transcript = models.TextField(default='Indispnível')
     summary = models.TextField(default='Indisponível')
+    lock_key = models.IntegerField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         

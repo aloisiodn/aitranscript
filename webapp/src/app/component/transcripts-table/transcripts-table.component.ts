@@ -12,6 +12,7 @@ import { InputFileService } from '../../service/inputFile.service';
 import { CollectionViewer } from '@angular/cdk/collections';
 import { InputFileDialogController } from '../inputFile-dialog/input-file-dialog.component';
 import { AuthService } from '../../auth/auth.service';
+import { AudioDownloadService } from '../../service/audio-download.service';
 
 //Dialogs
 import {
@@ -26,6 +27,11 @@ import {
 })
 export class TranscriptsTableComponent {
 
+    private baseUrl = 'http://localhost:8000'; 
+
+
+
+
     inputFilesList!: InputFile[];
 
 
@@ -37,15 +43,19 @@ export class TranscriptsTableComponent {
     @ViewChild(MatSort) sort !: MatSort;
 
     selection: any;
-
-    
+ 
     constructor(
+                private audioDownloadService: AudioDownloadService,  
                 private authService: AuthService,  
                 public dialog: MatDialog,
                 private inputFileService: InputFileService,
                 ) {
                   this.dialog = dialog;
                   this.loadInputFile();  
+    }
+
+    getUrl(id:number){
+      return (`${this.baseUrl}/files/${id}/download`)
     }
 
     loadInputFile() {
@@ -76,14 +86,14 @@ export class TranscriptsTableComponent {
     newInputFile: InputFile = { name: "", description: "", file_name:"", 
                                 user: this.authService.getUser(), 
                                 status:"Uploaded", transcript: "Indisponível", summary: "Indisponível",
-                                file_key: ""
+                                file_key: "", id:0, lock_key:0
                               }
 
     openDialogAdd(): void {
       this.newInputFile = { name: "", description: "", file_name:"", 
                             user: this.authService.getUser(), 
                             status:"UP", transcript: "Indisponível", summary: "Indisponível",
-                            file_key: ""
+                            file_key: "", id:0, lock_key:0
 
       }
       let dialogRef = InputFileDialogController.openDialog(this.dialog, this.newInputFile,'Add')
@@ -93,10 +103,32 @@ export class TranscriptsTableComponent {
       );    
   
     }
+
     openDialogDetails(obj: InputFile): void {
       InputFileDialogController.openDialog(this.dialog, obj,'Details')
     }
 
+    download(obj: InputFile): void {
+      console.log("download:", obj.id)
+      this.audioDownloadService.download(obj.id).subscribe( {
+        // on successful emissions
+        next: add_event => {
+          console.log("addEVENT",add_event);
+        },
+        // on successful emissions
+        
+        error: up_error => {
+          console.log("upERROR1", up_error.message)
+          console.log("upERROR2", up_error.error)
+          console.log("upERROR3", up_error.ok)
+          console.log("upERROR4", up_error.status, up_error.statusText)
+        },
+        // called once on completion
+        complete: () => {
+          console.log("upCOMPLETE", 'complete!');
+        }  
+      });  
+    }
     
 
     ngOnInit(): void {

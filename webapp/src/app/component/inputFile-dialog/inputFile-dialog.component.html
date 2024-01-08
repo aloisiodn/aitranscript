@@ -17,13 +17,13 @@
 
 
 
-<mat-dialog-content > 
+<!--<mat-dialog-content >--> 
   
 
 <p *ngIf="show_err" style="color:red">{{err_message}} </p>
 
 
-<div class="divform" mat-dialog-content>
+<div  class="divform" mat-dialog-content>
   
   <table width="100%" >
       
@@ -39,7 +39,7 @@
 
       <mat-form-field  class="example-full-width">
         <mat-label>Descrição</mat-label>
-        <textarea matInput name="descrição" [(ngModel)]="data.obj.description" placeholder="Entre uma descrição." [readonly]="data.action==='Details'">{{data.obj.description}}</textarea>
+        <textarea rows="2" matInput name="descrição" [(ngModel)]="data.obj.description" placeholder="Entre uma descrição." [readonly]="data.action==='Details'">{{data.obj.description}}</textarea>
       </mat-form-field>
     </td></tr>
     
@@ -102,6 +102,21 @@
       </td></tr>
     </ng-template>  
 
+    <div *ngIf="data.obj.status==='Transcrito'; then thenBlock5"></div>
+    <ng-template #thenBlock5>
+
+      <tr><td width="100%" colspan="2">
+        <mat-form-field  class="example-full-width">
+          <mat-label>Transcrição</mat-label>
+          <textarea rows="3" matInput name="transcricao" [(ngModel)]="data.obj.transcript" placeholder="Transcrição." [readonly]="data.action==='Details'">
+            {{data.obj.description}}
+          </textarea>
+        </mat-form-field>
+      </td></tr>
+
+    </ng-template>
+
+
     <tr><td colspan="2">
       <div class=divactions mat-dialog-actions align="end">
     
@@ -121,6 +136,7 @@
   </table>
   
   
-</div></mat-dialog-content>
-  
+</div>
+
+<!--</mat-dialog-content>-->
   

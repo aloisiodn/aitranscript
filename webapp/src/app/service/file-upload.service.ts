@@ -11,6 +11,7 @@ export class FileUploadService {
   constructor(private http: HttpClient) { }
 
   upload(file: File, file_key:string): Observable<HttpEvent<any>> {
+    
     console.log("upload1:", file.name )
     let formData: FormData = new FormData();
 
