@@ -145,7 +145,7 @@ export class InputFileDialog {
       this.data.obj.file_name=fileInput.files[0].name;
       this.uploadFile = fileInput.files[0]
       console.log(this.data.obj)
-   }
+    }
   
     onSubmeterClick(data: {obj:InputFile, action:string}): void {
 
